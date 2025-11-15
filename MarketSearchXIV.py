@@ -1,0 +1,33 @@
+import argparse
+import requests
+import pandas as pd
+
+parser = argparse.ArgumentParser(description="MarketSearchXIV")
+parser.add_argument("world", help="World Name")
+parser.add_argument("item_name", nargs="+", help="Item Name")
+
+args = parser.parse_args()
+
+ItemName = " ".join(args.item_name)
+
+df = pd.read_csv("Items.csv")
+
+filtered = df[df["str"].str.lower() == ItemName.lower()]
+
+ItemId = int(filtered.iloc[0]["int32"])
+
+url = f"https://universalis.app/api/v2/{args.world}/{ItemId}"
+ItemResponse = requests.get(url)
+ItemOutput = ItemResponse.json()
+
+print("")
+print("-" * 30)
+
+for i in ItemOutput["listings"]:
+    print("")
+    print(f"Price: {i['pricePerUnit']}")
+    print(f"Quantity: {i['quantity']}")
+    print(f"Total: {i['total']}")
+    print(f"Retainer: {i['retainerName']}")
+    print("")
+    print("-" * 30)
