@@ -3,7 +3,7 @@ import requests
 import pandas as pd
 
 parser = argparse.ArgumentParser(description="MarketSearchXIV")
-parser.add_argument("world", help="World Name")
+parser.add_argument("world", help="World Name or Data Center")
 parser.add_argument("item_name", nargs="+", help="Item Name")
 
 args = parser.parse_args()
