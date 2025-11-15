@@ -23,11 +23,22 @@ ItemOutput = ItemResponse.json()
 print("")
 print("-" * 30)
 
+
+
+
 for i in ItemOutput["listings"]:
     print("")
     print(f"Price: {i['pricePerUnit']}")
     print(f"Quantity: {i['quantity']}")
     print(f"Total: {i['total']}")
     print(f"Retainer: {i['retainerName']}")
+    
+    world_name = i.get('worldName')
+    if world_name is not None:
+        print("")
+        print(f"World: {world_name}")
+    else:
+        pass
+
     print("")
     print("-" * 30)
