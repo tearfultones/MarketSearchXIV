@@ -26,7 +26,7 @@ print("-" * 30)
 
 
 
-for i in ItemOutput["listings"]:
+for i in reversed(ItemOutput["listings"]):
     print("")
     print(f"Price: {i['pricePerUnit']}")
     print(f"Quantity: {i['quantity']}")
